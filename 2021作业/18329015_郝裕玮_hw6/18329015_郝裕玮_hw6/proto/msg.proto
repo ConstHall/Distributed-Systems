@@ -1,0 +1,20 @@
+syntax = "proto3";
+//规定语法，这里使用的是proto3的语法
+//使用service关键字定义服务
+
+service MsgService {
+    rpc GetMsg (MsgRequest) returns (MsgResponse){}
+    //简单RPC，即客户端发送一个请求给服务端，从服务端获取一个应答，就像一次普通的函数调用
+}
+
+//定义message内部需要传递的数据类型
+message MsgRequest {
+    //消息定义中，每个字段都有唯一的一个数字标识符
+    //这些标识符是用来在消息的二进制格式中识别各个字段的，一旦开始使用就不能够再改变
+    string text = 1;//发送内容
+}
+ 
+message MsgResponse {
+    int32 id = 1;//服务器id
+    string result = 2; //返回结果
+}
